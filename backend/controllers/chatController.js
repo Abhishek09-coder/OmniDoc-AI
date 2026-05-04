@@ -1,5 +1,15 @@
-const { genAI } = require('../config/aiConfig');
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 const Document = require('../models/Document');
+
+let genAI;
+if (process.env.GEMINI_API_KEY) {
+    
+    genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+} else {
+    
+    const aiConfig = require('../config/aiConfig');
+    genAI = aiConfig.genAI;
+}
 
 const handleChat = async (req, res) => {
     try {

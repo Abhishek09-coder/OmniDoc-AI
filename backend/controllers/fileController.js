@@ -2,8 +2,19 @@ const fs = require('fs');
 const path = require('path');
 const { PDFLoader } = require("@langchain/community/document_loaders/fs/pdf");
 const { RecursiveCharacterTextSplitter } = require("@langchain/textsplitters");
-const { genAI } = require('../config/aiConfig');
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 const Document = require('../models/Document');
+
+// 🧠 THE SMART ROUTER (Cloud vs Local)
+let genAI;
+if (process.env.GEMINI_API_KEY) {
+    // RENDER (CLOUD): Dahboard se key uthayega
+    genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+} else {
+    // LOCAL MACHINE: Hardcoded config file se key uthayega
+    const aiConfig = require('../config/aiConfig');
+    genAI = aiConfig.genAI;
+}
 
 const uploadDocument = async (req, res) => {
     try {
