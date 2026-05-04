@@ -3,7 +3,7 @@ const path = require('path');
 const { PDFLoader } = require("@langchain/community/document_loaders/fs/pdf");
 const { RecursiveCharacterTextSplitter } = require("@langchain/textsplitters");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const Document = require('../models/Document');
+const Document = require('../models/document');
 
 // 🧠 THE SMART ROUTER (Cloud vs Local)
 let genAI;

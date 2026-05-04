@@ -1,5 +1,5 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const Document = require('../models/Document');
+const Document = require('../models/document');
 
 let genAI;
 if (process.env.GEMINI_API_KEY) {
